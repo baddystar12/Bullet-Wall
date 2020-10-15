@@ -17,25 +17,24 @@ function draw() {
   wall.shapeColor = (80, 80, 80);
   car.shapeColor = "white";
   car.velocityX = speed;
-  var damage = 0.5*bulletWeight*bulletSpeed*bulletSpeed/wall.thickness*wall.thickness* wall.thickness
-  isTouching(bullet, wall);
+   if(isTouching(bullet, wall)){
+    bullet.velocityX = 0;
+    var damage = 0.5*bulletWeight*bulletSpeed*bulletSpeed/wall.thickness*wall.thickness* wall.thickness;
+    if(damage>10){
+      wall.shapeColor = "red";
+    }
+    if(damage<=10){
+      wall.shapeColor = "green";
+    }
+  };
   drawSprites();
 }
 
-function isTouching(object1, object2){
-  if(object1.x-object2.x < object1.width/2+object2.width/2&& 
-    object2.x - object1.x< object1.width/2+object2.width/2&& 
-    object1.y - object2.y< object1.height/2+ object2.height/2&&
-    object2.y - object1.y < object1.height/2+ object2.height/2) {
+function isTouching(lbullet, lwall){
+  bulletRightEdge = lbullet.x+lbullet.width;
+  wallLeftEdge = lwall.x;
+  if(bulletRightEdge>=wallLeftEdge){
     return true;
-    /*if(damage>10){
-      car.shapeColor = "red";
-    }
-    if(damage<=10){
-      car.shapeColor = "green";
-    }
-    car.shapeColor = "royalblue";
-    wall.shapeColor = "royalblue";*/
   }
   else{
     return false;
