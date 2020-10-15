@@ -8,15 +8,15 @@ function setup() {
   weight = random(30, 52);
   thickness = random(22, 83);
   bullet =createSprite(50, 200, 10, 50);
-  wall = createSprite(1200, thickness, 60, height/2);
-  car.velocityX = 0;
+  wall = createSprite(1200, 60, thickness, height/2);
+  bullet.velocityX = 0;
 }
 
 function draw() {
   background(255,255,255);  
   wall.shapeColor = (80, 80, 80);
-  car.shapeColor = "white";
-  car.velocityX = speed;
+  bullet.shapeColor = "white";
+  bullet.velocityX = speed;
    if(isTouching(bullet, wall)){
     bullet.velocityX = 0;
     var damage = 0.5*bulletWeight*bulletSpeed*bulletSpeed/wall.thickness*wall.thickness* wall.thickness;
