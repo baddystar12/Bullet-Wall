@@ -7,7 +7,7 @@ function setup() {
   bulletSpeed = random(223, 321);
   bulletWeight = random(30, 52);
   thickness = random(22, 83);
-  bullet =createSprite(50, 200, 10, 50);
+  bullet =createSprite(50, 60, 10, 50);
   wall = createSprite(1200, 60, thickness, height/2);
   bullet.velocityX = 0;
 }
@@ -19,7 +19,7 @@ function draw() {
   bullet.velocityX = bulletSpeed;
    if(isTouching(bullet, wall)){
     bullet.velocityX = 0;
-    var damage = 0.5*bulletWeight*bulletSpeed*bulletSpeed/wall.thickness*wall.thickness* wall.thickness;
+    var damage = 0.5*bulletWeight*bulletSpeed*bulletSpeed/(thickness)*(thickness)*(thickness);
     if(damage>10){
       wall.shapeColor = "red";
     }
